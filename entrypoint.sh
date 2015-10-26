@@ -8,7 +8,5 @@ fi
 
 mongodump --quiet --host $1 --db $2 -o /tmp
 cd /tmp
-tar -zxcf db.tar.gz ./$1
-rm -rf ./$1
-
-echo "File /tmp/db.tar.gz created successfully!"
+tar -czf - ./$2
+rm -rf ./$2
