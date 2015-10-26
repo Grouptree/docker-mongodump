@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ ! "$1" -a ! "$2"  ]; then
+if [ ! "$1" ] || [ ! "$2"  ]; then
   echo "Usage: docker run mongodump <host> <database>."
   exit 1
 fi
