@@ -8,5 +8,9 @@ fi
 
 mongodump --quiet --host $1 --db $2 -o /tmp
 cd /tmp
-tar -czf - ./$2
+mkdir -p /backups/$2
+filename="`date +"%Y-%m-%d-%H-%M-%S"`.tar.gz"
+tar -czf /backups/$2/$filename ./$2
 rm -rf ./$2
+ln -fs /backups/$2/$filename /backups/$2/latest.tar.gz
+echo "Backup file $2/$filename created."
