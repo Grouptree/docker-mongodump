@@ -2,11 +2,11 @@
 set -e
 
 if [ ! "$1" ] || [ ! "$2"  ]; then
-  echo "Usage: docker run mongodump <host> <database>."
+  echo "Usage: docker run mongodump <host> <database> <args>"
   exit 1
 fi
 
-mongodump --quiet --host $1 --db $2 -o /tmp
+mongodump --quiet --host $1 --db $2 -o /tmp "${@:3}"
 cd /tmp
 mkdir -p /backups/$2
 filename="`date +"%Y-%m-%d-%H-%M-%S"`.tar.gz"
